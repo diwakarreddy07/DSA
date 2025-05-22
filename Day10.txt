@@ -1,0 +1,79 @@
+*** Strings ***
+
+=> Strings are collection of Characters.
+=> Strings are Immutable.
+=> String literals will store in String pool. it will refer this value to multiple variable that contaion same Data.
+eg: String a="Hello";
+    String b="Hello";
+    System.out.print(a==b) ==> output: true.(because of same Location.)
+    System.out.print(a.equals(b))==> output: true.(because of same Data.)
+    
+=> String Objects will store in the Heap. It will refer to different address because of Objects.
+  eg: String a=new String("Hello");
+     String b=new String("Hello");
+     System.out.print(a==b) ==> output: false.(because of Different Location.)
+     System.out.print(a.equals(b)) ==> output: true.(because of same Data.)
+
+=> "==" operator is used to compare the Adress or refernce.
+=> "equlas" Operaor is used compare the Data.
+
+=> Advantage of Strings are inbuilt-methods.
+______________________________________________________________________________________________________________________________________
+
+** Methods of Strings: 
+ = charAt()
+ = length()
+ = startsWith()
+ = endsWith()
+ = contains() ==> it will check the character is contain or not.
+ = toUpperCase()
+ = toLowerCase()
+ = trim() => it will only remove first and last spaces.
+ = replace() => used to replace the old string with new String.
+ = split() =>it will split the String into smaller sub Strings.
+
+eg: public static void main(String[] args) {
+        String str="abcbacabcabcd";
+        String[] newStr=str.split("c");
+        System.out.print(Arrays.toString(newStr));
+   }
+__________________________________________________________________________________________________________________________________
+Q: Bring all the numbers to its sorted positions.
+input: {1,0,2,1,2,0,2,1,0,1}
+output: [0, 0, 0, 1, 1, 1, 1, 2, 2, 2]
+
+=> To Achieve this , bring all the 0s to first, and bring all 2s to end, then fill remaining positions with 1.
+
+code: 
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[]={1,0,2,1,2,0,2,1,0,1};
+        int size=arr.length;
+        int newarr[]=new int[size];
+        int index1=0;
+        int index2=arr.length-1;
+        
+        for(int i=index1;i<arr.length;i++)
+        {
+            if(arr[i]!=1 && arr[i]!=2)
+            {
+                newarr[index1++]=arr[i];
+            } 
+        }
+        for(int i=index2;i>=0;i--)
+        {
+            if(arr[i]!=0&&arr[i]!=1)
+            {
+                newarr[index2--]=arr[i];
+            }
+        }
+        
+        for(int i=index1;i<=index2;i++)
+        {
+            newarr[i]=1;
+        }
+        
+        System.out.print(Arrays.toString(newarr));
+    }
+}

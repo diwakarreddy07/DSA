@@ -1,0 +1,137 @@
+*** Multi-Dimensional Arrays***
+
+=> Multidimensional arrays are used to store the data in rows and columns, where each row can represent another individual array are multidimensional array. 
+=> It is also known as array of arrays. 
+
+=> Two dimensional array:
+int[][]  arr2d = new int[3][5];
+
+=> Three dimensional array:
+int[][][] arr3d = new int[3][5][7];
+
+** 2-D arrays:
+Eg: Printing the values in 2-D Array.
+class Main {
+    public static void main(String[] args){
+
+        int[][] arr = { { 1, 2 }, { 3, 4 } };
+
+        for (int i = 0; i < 2; i++){
+            for (int j = 0; j < 2; j++)
+                System.out.print(arr[i][j]+" ");
+          	System.out.println();
+    	}
+    }
+}
+---------------------------------------------------------------------------------------------------------
+Eg:Accessnig the element at index: 
+
+import java.io.*;
+
+class Main {
+    public static void main(String[] args){
+
+        int[][] arr = { { 1, 2 }, 
+                       	{ 3, 4 } };
+     
+		System.out.println("a[1][1] : " + arr[1][1]);
+    }
+}
+------------------------------------------------------------------------------------------------------------
+*** Jagged Array ***
+=> Jagged Array is also array of arrays.
+=> but each row, contain different number of colums
+
+arr [][]= { 
+	{1,2},
+	{3,4,5,6},
+	{7,8,9}
+	};
+
+---------------------------------------------------------------------------------------------------------------
+Eg: Find the Missing Number in a continuous Array.
+
+class Main {
+    public static void main(String[] args) {
+        int arr[]={1,2,3,5,6,7,8,9};
+        int n=arr.length+1;
+        int exSum=n*(n+1)/2;
+        
+        int actSum=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            actSum=actSum+arr[i];
+        }
+        
+        System.out.println(exSum-actSum);
+        
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------
+Eg: Find consecutive maximum number of  1s
+arr[]={1,0,1,0,1,1,1,0,1,1};
+
+class Main
+{
+    public static void main(String args[])
+    {
+        int arr[]={1,0,1,0,1,1,1,0,1,1};
+        int max=0;
+        int count=0;
+        
+        for(int i=0;i<arr.length;i++)
+        {
+            if(arr[i]==1)
+            {
+                count++;
+                if(count>max)
+                {
+                    max=count;
+                }
+            }
+            else
+            {
+                count=0;
+            }
+        }
+        System.out.println(max);
+    }
+}
+---------------------------------------------------------------------------------
+Eg:
+Find the Leader of the Array.
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        int arr[]={11,3,5,9,4,6};
+        List<Integer> list=findLeaders(arr);
+        
+        for(int num:list)
+        {
+            System.out.print(num+" ");
+        }
+    }
+    static List<Integer> findLeaders(int[] arr)
+    {
+        List<Integer> list=new ArrayList<>();
+        
+        int n=arr.length;
+        int max=arr[n-1];
+        list.add(max);
+        
+        for(int i=n-2;i>=0;i--)
+        {
+            if(arr[i]>max)
+            {
+                max=arr[i];
+                list.add(max);
+            }
+        }
+        
+        Collections.reverse(list);
+        return list;
+    }
+}

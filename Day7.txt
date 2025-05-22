@@ -1,0 +1,131 @@
+Q: *** Stock Sell return Max ***
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        int arr[]={7,1,5,3,6,4};
+        Scanner sc=new Scanner(System.in);
+        int buyDay=sc.nextInt();
+        
+        int maxProfit=0;
+        if(buyDay<0 || buyDay>=arr.length-1)
+        {
+            System.out.println("Invlaid Index");
+        }
+        else
+        {
+            for(int i=buyDay+1;i<arr.length;i++)
+            {
+                int profit=arr[i]-arr[buyDay];
+                if(profit>maxProfit)
+                {
+                    maxProfit=profit;
+                }
+            }
+        System.out.println(maxProfit);
+        }
+    }
+}
+
+_______________________________________________________________________________________________
+*** Monotonic Stack ****
+***Stack***
+Opertions:
+-------------
+push=> It is used to add an Element.
+Pop=> It is Used to remove an Element.
+Pekk=> It will give top most element.
+
+
+Q: Next Greater Element.
+input:              ouput:
+[2,8,1,4,3,6] --> [8,-1,4,6,6,-1]
+
+
+Step-by-Step Trace:
+
+We initialize:
+An empty stack []
+An output array: same size, all 0s initially
+
+=>Step 1: i = 5, arr[i] = 6
+Stack: []
+No element to the right → NGE = -1
+Push 6 → Stack: [6]
+Result so far: [_, _, _, _, _, -1]
+
+=>Step 2: i = 4, arr[i] = 3
+Stack: [6]
+6 > 3 → NGE = 6
+Push 3 → Stack: [6, 3]
+Result so far: [_, _, _, _, 6, -1]
+
+=> Step 3: i = 3, arr[i] = 4
+Stack: [6, 3]
+3 <= 4 → Pop 3
+Now 6 > 4 → NGE = 6
+Push 4 → Stack: [6, 4]
+Result so far: [_, _, _, 6, 6, -1]
+
+=> Step 4: i = 2, arr[i] = 1
+Stack: [6, 4]
+4 > 1 → NGE = 4
+Push 1 → Stack: [6, 4, 1]
+Result so far: [_, _, 4, 6, 6, -1]
+
+=> Step 5: i = 1, arr[i] = 8
+Stack: [6, 4, 1]
+1 <= 8 → Pop 1
+4 <= 8 → Pop 4
+6 <= 8 → Pop 6
+
+Stack is now empty → NGE = -1
+Push 8 → Stack: [8]
+Result so far: [_, -1, 4, 6, 6, -1]
+
+Step 6: i = 0, arr[i] = 2
+Stack: [8]
+8 > 2 → NGE = 8
+Push 2 → Stack: [8, 2]
+
+Result so far: [8, -1, 4, 6, 6, -1]
+
+Code:
+import java.util.*;
+
+class Main {
+    public static void main(String[] args) {
+        int[] arr = {2, 8, 1, 4, 3, 6};
+        int n = arr.length;
+        int[] result = new int[n];
+        Stack<Integer> stack = new Stack<>();
+
+        for (int i = n - 1; i >= 0; i--) {
+            // Pop elements that are less than or equal to current
+            while (!stack.isEmpty() && stack.peek() <= arr[i]) {
+                stack.pop();
+            }
+
+            // If stack is empty, no greater element
+            result[i] = stack.isEmpty() ? -1 : stack.peek();
+
+            // Push current element to stack
+            stack.push(arr[i]);
+        }
+
+        System.out.println("Next Greater Elements: " + Arrays.toString(result));
+    }
+}
+----------------------------------------------------------------------------------------------------------------
+*** ArrayList***
+=>Array List is class of List Interface.
+=> It is a part of Collection Framework.
+=> These are Dynamic Arrays.
+=> ArrayLists are particularly useful when the number of elements is unknown.
+
+Example: 
+ArrayList<String> names = new ArrayList<>();
+
+Here , String inbetween <> are Wrapper Classes.

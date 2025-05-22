@@ -1,0 +1,404 @@
+OOPS:
+=>Constructor Calling:
+//Constructor: It is a Special Methodin the class , that Intializes the state of an Object.
+// Simply, Constructor: Constructor means Initialization of Object.
+
+Intialization means you are calling the default constructor it create objects.
+//when we call the constructor of child class , it atomatically cass the Parent Constructor:
+
+ex: 
+
+class Animal{
+  Animal(){
+    System.out.println("Animal Constructor);
+  }
+}
+class Dog{
+  Dog(){
+    System.out.println("Dog Constructor);
+  }
+}
+  class Main
+       {
+          public static void main(String args[])
+          {
+              new Dog();
+      
+          }
+    
+       }
+
+    //when we call the constructor of child class , it atomatically cass the Parent Constructor: so,
+                       the output will be:
+
+                       Animal Constructor.
+                       Dog Constructor.
+-------------------------------------------------------------
+=>Method Calling:
+
+//When we call a method of a class, only that class method will get Execute , Super method Wont Execute.       
+                       
+class Animal{
+  static void eat(){
+    System.out.println("Animal is eating);
+  }
+}
+class Dog{
+  static vois eat(){
+    System.out.println("Dog is Eating);
+  }
+}
+  class Main
+       {
+          public static void main(String args[])
+          {
+               Animal.eat(); //output: Animal is Eating
+               Dog.eat();  //output: Dog is Eating
+      
+          }
+    
+       }   
+
+=>Here we are not creating objects of Animal or Dog , beacuse  those are static methods.
+=> we can call the static methods of a class Directly, beacuse , the method is static.
+ => Static means nothing but , it is a Class instance. not an Object instance.
+---------------------------------------------------------------
+* Mthod overriding: 
+
+class Animal{
+  static void eat(){
+    System.out.println("Animal is eating);
+  }
+}
+class Dog{
+@Override
+  static vois eat(){
+    System.out.println("Dog is Eating);
+  }
+}
+  class Main
+       {
+          public static void main(String args[])
+          {
+               Animal animal=new Dog(); 
+               animal.eat();  // Output: Dog is Eating.
+      
+          }
+    
+       }   
+
+=> Here the Method eat() is overrided so it will print the method of Dog
+
+---------------------------------------------------------------------
+** Control Statements:
+
+// Control Statemenst are used to control the flow of the program.
+
+Types of Control Statements: 
+
+---> Decision Making Statements:
+     // these are Conditional Statements.(like.. if, if else, switch).
+---> Iteration Statements:
+     // these are Looping Statements(while,do while,for).
+-->Jump Statements:
+    // this contain break,continue,return.
+----------------------------------------------
+=>Coditional Statements:
+                       
+It will the Check the Given Condition and it will print that Block.
+                       
+Types:
+* if
+        //In if , it check the condition , if it is correct then enter into the block and executes the Statements inside the Block.
+    Syntax: if(Condition)
+            {
+            //Statements.
+            }
+    Example:
+          //Find the Greatest Number.
+                       
+           if(a>b)
+            {
+            System.out.println("a is Greater");
+            }
+                       
+* if else
+          //In if else , it check the condition of if() block, if it is correct then enter into the if block and executes the Statements inside the Block. or 
+                       //if condtition not satisfies it will enter into Else block and it will print it.
+    Syntax: if(Condition)
+            {
+            //Statements.
+            } 
+             else
+               {
+                //Statements
+
+                }
+
+          Example:
+          //Find the Greatest Number.
+                       
+           if(a>b)
+            {
+            System.out.println("a is Greater");
+            }
+          else
+          {                
+          System.out.println("b is Greater");
+           }
+                       
+*if , else if,else(if else Lader)
+        // it is ued to check multiple conditions.
+                       
+*Switch 
+     // it is also used to check multiple Conditions based on cases.It is most useful when we have multiple Conditions.
+                       
+-----------------------------------------------------
+  * Switch Case Example:  
+=> Write a program for Simple Calculator.
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter Number 1: ");
+        int num1=sc.nextInt();
+        
+        System.out.println("Enter Number2: ");
+        int num2=sc.nextInt();
+        
+        System.out.println("Enter an Operator: ");
+        String str=sc.next();
+        
+        char operator=str.charAt(0);
+        
+        switch(operator)
+        {
+            case '+':
+                System.out.println("Addtion is: "+(num1+num2));
+                break;
+            case '-':
+                System.out.println("Subtraction is: " + (num1-num2));
+                break;
+            case '*':
+                System.out.println("Multiplication is: " +(num1*num2));
+                break;
+            case '/':
+                System.out.println("Quotient is: " +(num1/num2));
+                break;
+            case '%':
+                System.out.println("Remainder is:"+ (num1%num2));
+                break;
+            default:
+               System.out.println("Not a Valid Operator");
+                
+        }
+        
+    }
+}
+
+// In the above code we have used next() and charAt() to to fetch the Operator, Beacuse we dont have a Scanner method to fetch a Char Individually.
+// So we have store the Operator in String using next() method and have fecht it using charAt() method.
+----------------------------------------------------------------------------------------
+* Iteration Statements(Looping Statements):
+=> These loops are used to execute the Block of Code until  condition gets fail.
+Types of Loops are:
+while:
+   Syntax:
+        while(Condtion)
+        { 
+           //Statements
+        }
+
+for:
+   Syntax:
+      for(intialization,condition,increment)
+       {
+           //Statements
+       }
+do while:
+    Syntax:
+         do{
+              //Statements
+           }while(Condition);
+
+=>When we know the Range we wil use for loop.
+=>when we dont know the range we will use while loop.
+
+Difference Between While() and do While()
+------------------------------------------
+* while is a entry Conditional loop, means the Condition will check first.
+* do while is a exit Conditional loop, means it checks the condition at end, 
+   so in do while the statements or one iteration will complete before Checking the Condition.
+
+
+Q: write a Program to Print the Table of a number.
+
+==> Using for loop: 
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Number: ");
+        int num=sc.nextInt();
+        
+        for(int i=1;i<=10;i++)
+        {
+            System.out.println(num+ "*" +i+" = "+num*i);
+        }
+    }
+}
+
+==> using while Loop:
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Number: ");
+        int num=sc.nextInt();
+        int i=1;
+        while(i<=10)
+        {
+            System.out.println(num+ "*" +i+" = "+num*i);
+            i++; //Increment of i.
+        }
+    }
+}
+-------------------------------
+Q: Fibonacci using for loop: 
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Number: ");
+        int num=sc.nextInt();
+        
+        int first=0;
+        int second=1;
+        
+        System.out.print(first+" "+second+" ");
+        for(int i=2;i<=5;i++)
+        {
+            int temp=first+second;
+            
+            System.out.print(temp+" ");
+            first=second;
+            second=temp;
+        }
+    }
+}
+-----------------------------------------
+Q: Factorial of a Number using for Loop: 
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Number: ");
+        int num=sc.nextInt();
+        int fact=1;
+        for(int i=1;i<=num;i++)
+        {
+            fact=fact*i;
+        }
+        
+        System.out.println("The factorail is: "+ fact);
+        
+    }
+}
+---------------------------------------------------
+
+Q: Reverse an Number.
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        Scanner sc=new Scanner(System.in);
+        System.out.println("Enter the Number: ");
+        int num=sc.nextInt();
+        int rem=0;
+        int reversedNum=0;
+        while(num>0)
+        {
+            
+            rem=num%10;
+            reversedNum=reversedNum*10+rem;
+            num=num/10;
+        }
+        
+        System.out.println(reversedNum);
+        
+    }
+}
+--------------------------------------
+Q: Reverse an Array:
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        int arr[]={5,4,3,2,1};
+        
+        reversedArray(arr);
+        System.out.println(Arrays.toString(arr));
+    }
+    
+    static void reversedArray(int[] arr)
+    {
+        int start=0;
+        int end=arr.length-1;
+        
+        while(start<end)
+        {
+            int temp=arr[start];
+            arr[start]=arr[end];
+            arr[end]=temp;
+            
+            start++;
+            end--;
+        }
+    }
+}
+
+output : [1 , 2 , 3 , 4 , 5]
+-------------------------------
+Q: Reverse an Array.
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        int arr[]={5,4,3,2,1};
+        for(int i=arr.length-1;i>=0;i--)
+        {
+            System.out.print(arr[i]+" ");
+        }
+    }
+   
+}
+
+output: 
+       1 2 3 4 5
+
+// ==> The main difference between the upside code and and this is , this wont return the reverse elements in a array. it just return values that are reversed.
+
+ ==> the difference we can observe in Ouputs.
+
+----------------------------------------------------
+

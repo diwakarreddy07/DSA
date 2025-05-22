@@ -1,0 +1,67 @@
+*** Collection Frameworks ***
+=> The Collection Framework in Java is a set of interfaces and classes that provide a unified architecture for storing and manipulating groups of objects.
+=> The framework is located in the java.util package. 
+
+Core Interfaces
+
+Collection:
+The root interface for collections of objects.
+List:
+An ordered collection that allows duplicate elements (e.g., ArrayList, LinkedList).
+
+Set:
+A collection that does not allow duplicate elements (e.g., HashSet, TreeSet, LinkedHashSet).
+
+Map:
+An object that stores key-value pairs, where keys are unique (e.g., HashMap, TreeMap).
+
+*** Key Implementations ***
+
+* ArrayList: A resizable array implementation of the List interface.(Dynamic)
+* LinkedList: A doubly-linked list implementation of the List and Deque interfaces.
+* HashSet: A hash table implementation of the Set interface, providing fast insertion, deletion, and retrieval.
+* TreeSet: A SortedSet implementation that stores elements in a sorted order.
+* PriorityQueue: A queue implementation where elements are ordered based on their natural ordering or a specified comparator.
+* HashMap: A hash table implementation of the Map interface, allowing fast access to elements using keys.
+* TreeMap: A SortedMap implementation that stores key-value pairs in a sorted order based on keys.
+* Vector: Similar to ArrayList, but synchronized.
+
+Syntax:
+
+List<Integer> list= new ArrayList<>();
+Set<Integer> set=new HashSet<>();
+Map<Integer,Integer> map=new HashMap<>();
+
+*** Kadanes Algorithm***
+Q: From the Given arry we have to find Maimum sum of Sub-Arrays.
+ex: [1,2,3]
+    [1,2] , [1,3] ,[2,3] ,[1,2,3].
+=> To find the maximum sum of subarrays , for optimal Solution we can use kadenes alogorithm.
+
+class Main
+{
+    public static void main(String args[])
+    {
+      int arr[]={-2,1,-3,4,-1,2,1,-5,4};
+      int res=max(arr);
+      System.out.print(res);
+    }
+    static int max(int[] arr)
+    {
+         int sum=0;
+        int max=Integer.MIN_VALUE;
+        
+        for(int i=0;i<arr.length;i++)
+        {
+            sum=sum+arr[i];
+            
+        if(sum<0)
+        {
+            sum=0;
+        }
+         max=Math.max(sum,max);
+        }
+    
+       return max;
+    }
+}

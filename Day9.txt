@@ -1,0 +1,125 @@
+167. Two Sum II - Input Array Is Sorted
+Given a 1-indexed array of integers numbers that is already sorted in non-decreasing order, find two numbers such that they add up to a specific target number. 
+Let these two numbers be numbers[index1] and numbers[index2] where 1 <= index1 < index2 <= numbers.length.
+Return the indices of the two numbers, index1 and index2, added by one as an integer array [index1, index2] of length 2.
+The tests are generated such that there is exactly one solution. You may not use the same element twice.
+Your solution must use only constant extra space.
+Example 1:
+
+Input: numbers = [2,7,11,15], target = 9
+Output: [1,2]
+Explanation: The sum of 2 and 7 is 9. Therefore, index1 = 1, index2 = 2. We return [1, 2].
+Example 2:
+
+Input: numbers = [2,3,4], target = 6
+Output: [1,3]
+Explanation: The sum of 2 and 4 is 6. Therefore index1 = 1, index2 = 3. We return [1, 3].
+
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        int arr[]={5,25,75};
+        int target=100;
+        int res[]=find(arr,target);
+        System.out.println(Arrays.toString(res));
+       
+    }
+    static int[] find(int[] arr,int target)
+    {
+        int i=0;
+        int j=arr.length-1;
+        
+        while(i<j)
+        {
+            int sum=arr[i]+arr[j];
+            
+            if(sum==target)
+            {
+                return new int[]{i+1,j+1};
+            }
+            
+            if(sum>target)
+            {
+                j--;
+            }
+            else
+            {
+                i++;
+            }
+        }
+        return new int[]{0,0};
+    }
+}
+
+
+
+------------------------------------------------------------------------------------------------------
+*** Strings ***
+
+=> Collection of characters is called Strings.
+=> String are immutable.
+=> StringBuilder and StringBuffer is mutable.
+
+Q: Remove an character from the String and return the remaining String.
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        String str="Devendvra";
+        StringBuilder bil=new StringBuilder();
+        
+        for(int i=0;i<str.length();i++)
+        {
+            if(str.charAt(i)!='v')
+            {
+              bil.append(str.charAt(i));
+            }
+            
+        }
+        
+        System.out.println(bil);
+    }
+}
+
+------------------------------------------------------------------------------------------------------------
+Q: 344. Reverse String
+Write a function that reverses a string. The input string is given as an array of characters s.
+You must do this by modifying the input array in-place with O(1) extra memory.
+Example 1:
+Input: s = ["h","e","l","l","o"]
+Output: ["o","l","l","e","h"]
+
+class Main {
+   static void main(String args[])
+{
+   char[] ch={'h','e','l','l','o'};
+   reverseString(ch);
+   System.out.println(Arrays.toString(ch));
+
+}
+    static void reverseString(char[] s) {
+        int i=0;
+        int j=s.length-1;
+
+        while(i<j)
+        {
+            swap(s,i,j);
+            i++;
+            j--;
+        }
+    }
+    void swap(char[] s,int i,int j)
+    {
+        char temp=s[i];
+        s[i]=s[j];
+        s[j]=temp;
+    }
+}
+
+--------------------------------------------------------------------------------------------------------------------
+
+

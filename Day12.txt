@@ -1,0 +1,189 @@
+Q:  Majority Element: 
+input={2,2,1,2,1};
+output=2
+
+*** Voting Algorithm ***
+
+*Steps: 
+=> Assume that the 1st is the Target Element.
+=> Intailaze the counter.
+=> Start comparing the rest of element, if you got same element increase the counter ,else decrease the count.
+=> Whenever counter becomes the Zero, Restart the target value by next Element of the Array.
+=> if counter becomes 0 , then there will be no majority element.
+=> If counter > 0 , Check the target Element in our array, and count how many times it were repeated, if it were repeated more than n/2 then that is the majority element.
+
+Code:
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[]={2,2,1,2,1};
+        int res=findMajority(arr);
+        System.out.print(res);
+    }
+    static int findMajority(int[] arr)
+    {
+        int count=0;
+        int target=0;
+        int element=0;
+        int counter=0;
+        for(int i=0;i<arr.length;i++)
+        {
+            if(count==0)
+            {
+                target=arr[i];
+            }
+            
+            if(arr[i]==target)
+            {
+                count++;
+            }
+            else if(arr[i]!=target)
+            {
+                count--;
+            }
+            
+            
+        }
+        if(count<=0)
+        {
+            return -1;
+        }
+        else if(count>0)
+        {
+            element=target;
+        }
+        
+        for(int j=0;j<arr.length;j++)
+        {
+            if(arr[j]==element)
+            {
+                counter++;
+            }
+        }
+        
+        int size=arr.length/2;
+        
+        if(counter<size)
+        {
+            return -1;
+        }
+        return target;
+    }
+}
+
+_______________________________________________________________________________________________________________
+*** 128. Longest Consecutive Sequence ***
+Input: nums = [100,4,200,1,3,2]
+Output: 4
+Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4.
+
+steps:
+
+=> store the values into set.
+=> iterate through set and find start using isthere i-1 or not, if not there then it is the start, and make count as 1.
+=> iterate through while loop until the it reach to continuous end value through start+1.
+=> compare max with max and count.
+
+code:
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        int arr[] = {100, 4, 200, 1, 3, 2};
+        int res = find(arr);
+        System.out.print(res);
+    }
+
+    static int find(int[] arr) {
+        int max = 0;
+
+        Set<Integer> set = new HashSet<>();
+        for (int num : arr) {
+            set.add(num);
+        }
+
+        for (int i : set) {
+            if (!set.contains(i - 1)) { 
+                int start = i;
+                int count = 1;
+
+                while (set.contains(start + 1)) {
+                    start++;
+                    count++;
+                }
+
+                max = Math.max(max, count);
+            }
+        }
+
+        return max;
+    }
+}
+
+__________________________________________________________________________________________________________
+*** Sliding Window ***
+
+=> We have to use 2 pointers .
+=> Types:
+  * Constant Window.
+  * Dynamic Window.
+=> In Constant Window, the sizw will be fixed.
+=> In Dynamic Winodw, the size will vary or different.
+
+Q: 1423. Maximum Points You Can Obtain from Cards
+Input: cardPoints = [1,2,3,4,5,6,1], k = 3
+Output: 12
+
+Explanation:
+* in this problem we need to find the max sum, either from front or back.
+* first case ( first 3{1+2+3})
+ Second case ( first 2,last 1{1+2+1})
+ Third case ( first 1,last 3 {1+1+6})
+ fourth case ( last 3{1+6+5})
+
+Code:
+class Solution {
+    public int maxScore(int[] cardPoints, int k) {
+        int n = cardPoints.length;
+        int total = 0;
+
+        // Step 1: Compute total sum of all card points
+        for (int point : cardPoints) {
+            total += point;
+        }
+
+        // Step 2: Find the minimum sum of a subarray of size (n - k)
+        int windowSize = n - k;
+        int minWindowSum = 0;
+
+        // Initialize with the first window
+        for (int i = 0; i < windowSize; i++) {
+            minWindowSum += cardPoints[i];
+        }
+
+        int currentSum = minWindowSum;
+
+        // Slide the window through the array
+        for (int i = windowSize; i < n; i++) {
+            currentSum += cardPoints[i] - cardPoints[i - windowSize];
+            minWindowSum = Math.min(minWindowSum, currentSum);
+        }
+
+        // Step 3: Max score = total sum - min subarray sum
+        return total - minWindowSum;
+    }
+}
+_________________________________________________________________________________________________________________________________
+
+*** Binary Search ***
+=> The array must be sorted.
+steps:
+=> find the mid.
+=> check the target is > or < mid.
+=> if > than the target then , start=mid+1.
+=> if < tahn the target then, end=mid-1.
+
+
+
+

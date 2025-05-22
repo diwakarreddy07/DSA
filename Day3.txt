@@ -1,0 +1,341 @@
+** Nested Loops.
+-----------------
+
+=> A loop inside a loop is called as Nested Loop.
+=> For every problem , there will be 3 types of Solutions:
+   * Brute Force
+   * Better
+   * Optimal
+
+=> Most of the Brute Solution will get using 2 loops and Most of solution is solved using 2 loops.
+=> Time complexity of Bruteforce is always n^2.
+
+ex:
+class Main {
+    public static void main(String[] args) {
+        int a=0;
+        int n=5;
+        for(int i=1;i<=n;i++)  //outer loop
+        {
+            for(int j=1;j<=n;j++) //inner Loop
+            {
+                a++;
+            }
+        }
+        System.out.println(a);
+    }
+}
+
+** Pattern Problems:
+------------------------
+
+=> ex: print the Sqaue
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+* * * * *
+
+=>to get this , we need 5 rows and colums,
+  we need to print * in 5 colums and also in 4 rows so:
+
+//code: 
+
+class Main {
+    public static void main(String[] args) {
+        
+        int n=5;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                System.out.print("* ");
+            }
+            System.out.println();
+        }
+        
+    }
+}
+
+--------------------------------------------------------------------------
+=>ex:
+* * * * * 
+*       * 
+*       * 
+*       * 
+* * * * * 
+
+=> here we are printing * when i=0 means first row,
+                          when i=n means last row,
+                          j=1 and j=n.
+  else give space.
+// ex: 
+  * * * * * 
+  *       * 
+  *       * 
+  *       * 
+  * * * * * 
+
+class Main {
+    public static void main(String[] args) {
+        
+        int n=5;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                if(i==1 || i==n || j==1 || j==n)
+                {
+                    System.out.print("* ");
+                }
+               
+                else
+                {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+        
+    }
+}
+--------------------------------------------------------------
+=>ex:
+
+* * * * * 
+* *     * 
+*   *   * 
+*     * * 
+* * * * * 
+=> here extra are left diagonal means (i,j) values , just see when extra * printed : (1,1) ,(2,2). so on..
+
+class Main {
+    public static void main(String[] args) {
+        
+        int n=5;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                if(i==1 || i==n || j==1 || j==n || i==j)
+                {
+                    System.out.print("* ");
+                }
+               
+                else
+                {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+        
+    }
+}
+
+---------------------------------------------------------------------------------
+ex: 
+* * * * * 
+* *   * * 
+*   *   * 
+* *   * * 
+* * * * * 
+=> here we have right diagonal the comman in right diagonal is just see: 1+5=6 start of diagonal
+                                                                         2+4=6
+                                                                         3+3=6 
+                                                                         4+2=6 
+                                                                         5+1=6
+=> so comman is i+j is 6.
+
+class Main {
+    public static void main(String[] args) {
+        
+        int n=5;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=n;j++)
+            {
+                if(i==1 || i==n || j==1 || j==n || i==j || i+j==6)
+                {
+                    System.out.print("* ");
+                }
+               
+                else
+                {
+                    System.out.print("  ");
+                }
+            }
+            System.out.println();
+        }
+        
+    }
+}
+-------------------------------------------------------------------------------
+
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+=> here we can observe that * in based on i,so if j is based on i means it will print.
+just condition :
+//  for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=i;j++)
+                        ----
+            {
+             }
+        } 
+//code:
+
+class Main {
+    public static void main(String[] args) {
+        
+        int n=5;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=i;j++)
+            {
+               System.out.print("* ");
+            }
+            System.out.println();
+        }
+        
+    }
+}
+---------------------------------------------------------------------------------------
+ex: 
+* 
+* * 
+*   * 
+*     * 
+* * * * * 
+
+=> Here the change is * is printing when j=1, i=n, i==j
+ means 1st line, last line and i==j like (1,1),(2,2),(3,3)
+
+
+class Main {
+    public static void main(String[] args) {
+        
+        int n=5;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=i;j++)
+            {
+               if(i==n || j==1 || i==j)
+               {
+                   System.out.print("* ");
+               }
+               else
+               {
+                   System.out.print("  ");
+               }
+            }
+            System.out.println();
+        }
+        
+    }
+}
+----------------------------------------------------------------------
+Q; Check a number is Prime or not.
+
+=> Prime Number is a number that is Divisible 1 and itself:
+   ex: 7
+    it is only Divisible by 1 and 7 only.
+
+class Main {
+    public static void main(String[] args) {
+        
+        int n=7;
+        System.out.println(isPrime(n));
+    }
+    static boolean isPrime(int n)
+    {
+        if(n<=1)
+            {
+                return false;
+            }
+        for(int i=2;i<n;i++)
+        {
+            
+            if(n%i==0)
+            {
+                return false;
+            }
+        }
+        return true;
+    }
+}
+------------------------------------------------------------------------------
+Q: Print no.of Primes numbers until n.
+
+=> it will print n number of Prime Numbers.
+like(2,3,5,7,11,13,17,19,23.....) based on N Condition.
+
+class Main
+{
+    public static void main(String args[])
+    {
+        int num=100;
+        for(int i=1;i<=num;i++)
+        {
+            if(isPrime(i))
+            {
+                System.out.println(i);
+            }
+        }
+        
+    }
+    static boolean isPrime(int num)
+    {
+        if(num<=1)
+        {
+            return false;
+        }
+        for(int i=2;i<num;i++)
+        {
+            if(num%i==0)
+            {
+                return false;
+            }
+        }
+        
+        return true;
+    }
+}
+
+------------------------------------------------------------------------------
+Q; Find num is Armstrong Number or not.
+
+153= 1^3 + 5^3 + 3^3
+when the sum of cubes is equal to the taken number , then it is a Armstrong number.
+
+class Main {
+    public static void main(String[] args) {
+        int num=153;
+        isArmstrong(num);
+    }
+    static void isArmstrong(int num)
+    {
+        int temp=num;
+        int sum=0;
+        while(temp>0)
+        {
+            int rem=temp%10;
+            sum=sum+rem*rem*rem;
+            temp=temp/10;
+        }
+        if(num==sum)
+        {
+            System.out.println("It is a Armstrong Number");
+            
+        }
+        else
+        {
+            System.out.println("Not an ArmStrong Number");
+        }
+    }
+    
+}
+---------------------------------------------------------------
