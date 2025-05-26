@@ -1,0 +1,198 @@
+***Problem solving***
+\\ Koko eating bananas
+
+import java.util.*;
+class GfG {
+    static int koKoEat(int[] arr, int k) {
+        int max = Arrays.stream(arr).max().getAsInt();
+        for (int speed = 1; speed <= max; speed++) {
+            
+            int time = 0;
+            for (int bananas : arr) {
+                
+                time += bananas / speed;
+
+                if (bananas % speed != 0) {
+                    time++;
+                }
+            }
+            
+            if (time <= k) {
+                return speed;
+            }
+        }
+
+        return max;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {3, 6, 7, 11};
+        int k = 8;
+        System.out.println(koKoEat(arr, k));
+    }
+}
+--------------------------------------------------------------------
+***No.of sub strings***
+
+import java.io.*;
+import java.util.*;
+
+class Main {
+
+  static int numberOfSubstrings(String s, int K)
+  {
+    HashMap<Character, Integer> unmap = new HashMap<>();
+
+    int start = 0, end = 0, n = s.length(), result = 0;
+
+
+    while (end < n) {
+      unmap.put(s.charAt(end),
+                unmap.getOrDefault(s.charAt(end), 0)
+                + 1);
+
+      if (unmap.size() == K) {
+
+        
+        while (unmap.size() == K) {
+
+          
+          result += n - end;
+
+          unmap.put(s.charAt(start),
+                    unmap.get(s.charAt(start))
+                    - 1);
+
+          
+          if (unmap.get(s.charAt(start)) == 0) {
+            unmap.remove(s.charAt(start));
+          }
+
+          start++;
+        }
+
+        end++;
+      }
+
+
+      else {
+        end++;
+      }
+    }
+
+    return result;
+  }
+
+  public static void main(String[] args)
+  {
+    String S = "abcabc";
+    int K = 3;
+
+    System.out.print(numberOfSubstrings(S, K));
+  }
+}
+
+-------------------------------------------------------------
+***Max product of Sub array***
+
+[2,3,-2,2]
+
+Even-ve (+ve)
+Odd-ve (-ve)
+
+[5,3,1,-10,5,7,8,0,-1,2]
+
+
+observation-
+
+=> When the geven will be positeve Sub array hare even negative values the
+
+=> If we have odd negative values the product will be negateve.
+
+=> If we got Zero the product to the product will be zero. Then loe reenilat One
+
+=> Initialere two variables (Prefer variable and suffon variable).
+
+=> Calculate prefex product and calculate suffer product to get of prefen and suffesx.
+
+P=1, S=1
+
+Max=-00
+
+for (o-n-1)
+ if (p==0) P=1; 
+P = Px arr[i]; 
+S = S x arr [n-i-1];
+
+Max= Max (P.S):
+
+----------------------------------------------------------------------------------------
+***Finding peak ele***
+
+import java.util.*;
+class Main {
+    static int peakElement(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 0; i < n; i++) {
+            boolean left = true;
+            boolean right = true;
+            if (i > 0 && arr[i] <= arr[i - 1])
+                left = false;
+            if (i < n - 1 && arr[i] <= arr[i + 1])
+                right = false;
+            if (left && right) {
+                return i;
+            }
+        }
+        return 0;
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {1, 2, 4, 5, 7, 8, 3};
+        System.out.println(peakElement(arr));
+    }
+}
+
+-----------------------------------------------------------------
+***OOOPS***
+
+class: virtual entity blueprint of a object,contains abstract and non abtsract methods.
+object:instance of a class
+to call non static methods which were present in the particular class,we have to create object for particular class
+if it static method we directly calling class
+constructor : deflt,parametrised constructor
+dflt constructor is for every class dflt constructor.  parametrised is we have to pass values or args.
+it is neither class or nor method ,its having class name and method properties
+
+INHERITANCE:>>
+    SINGLE,MULTILEVEL,MULTIPLE,HIERARCHY
+SINGLE :  PROPERTIES ARE INHERITED TO CHILD CLASS FROM PARENT CLASS
+MULTILEVEL :PROPERTIES ARE INHERITED TO PARENT CLASS FROM GRAND PARENT CLASS AND INHERITED TO CHILD CLASS TO PARENT CLASS
+MULTIPLE :INHERITED TO CHILD CLASS FROM MULTIPLE PARENTS
+HIERARCHY: PROPERIES INHERITED TO MULTIPLE CHILDS
+EXTEND KEY WORD IS INHERIT THE PROPERTIES FROM CLASSES
+IMPLEMENT KEYWORD IS USED TO INHERIT THE PROPERTIES FROM INTERFACES
+
+POLYMORPHISM:>>
+      SAME METHOD MULTIPLE TIMES WITH DIFFERENT FORMS
+      1.METHOD OVERLOADING 2.METHOD OVERRIDING
+1.SAME METHOD NAME IN SAME CLASS WITH DIFF PARAMETERS
+2.  METHOD DECLARE WITH CHILD CLASS AND SSAME METHOD EXISISTING  IN PARENT CLASS(SAME NAME,SAME PARAMETERS)
+     MAIN METHOD CAN BE OVERRIDEN 
+
+ENCAPSULATION>>
+   BINDING METHOD AND DATA AND HIDE SENSITIVE DATA.IF PVT.VARIABLE DECLARE IN CLASS IF WE WANT ACCESS FROM OUTSIDE WE CCANT ACCESS,IF WE WAANT USING METHODS WE CAN.
+
+ABSTRACTION:
+    HIDDING IMPLEMENTATION AND SHOWING USEFUL DATA.IF WE METHOD IS ABSTRACT METHOD THE METHOD NAME STAART WITH ABSTARCT KEYWORD
+    AS WELL  AS CLASS NAME START WITH ABSTARCT KEYWORD
+     4 TYPES:  DATA,FUNCTIONAL,CONTROL AND PROCEDURE
+INTERFACE:
+          CONTAINS ONLY ABSRACT METHODS WE CANT CREATE OBJECT FOR INTERRFACE
+ACCESS SPECIFIERS>>
+PUBLIC,PVT,PROTECTED,DFLT
+PUBLIC:IF A VARIABLE,METHOD,CLASS THE SCOPE WILL BE WITH IN THE CLASS,IN FILE ,IN PACKAGES,OUTSIDE THE PACKAGE PARENT CLASS IN OUTSIDE THE PACKAGE,CHILD CLASS OF OUTSIDE OF PACKAGE
+PRIVATE:IF VARIABLE,METHOD DECLARED AS CLASS THE SCOPE WITH IN THE CLASS ONLY
+PROTECTED :IFF A VARIABLE DECLARED AS PROTECTED THE SCOPE WILL BE WHICH I THE CLASS,IN FILE ,PACKAGE ,OUTSIDE THE PACKAGE CHILD CLASSES ONLY.
+DFLT:WITH IN CLASS,FILE,PACKAGE.

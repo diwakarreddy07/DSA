@@ -1,0 +1,318 @@
+*** Implementation of OOP ***
+
+Calling the different class methods in main class:
+
+class Main {
+    public static void main(String[] args) {
+        A a=new A();
+        B b=new B();
+        a.meth1();
+        a.meth2();
+        b.meth1();
+        b.meth3(); 
+        System.out.println(a.meth5(10,20));
+        System.out.println(b.meth5(10,20,30));
+    }
+}
+class A
+{
+    static void meth1()
+    {
+        System.out.println("Meth1 in A");
+    }
+    
+    void meth2()
+    {
+        System.out.println("Meth2 non static in A");
+    }
+   int meth4(int a,int b)
+    {
+        return a+b;
+    }  
+}
+class B
+{
+     static void meth1()
+    {
+        System.out.println("Meth1 in B");
+    }
+    void meth3()
+    {
+        System.out.println("Meth3 in b non static");
+    }   
+    int meth5(int a,int b,int c)
+    {
+        return a+b+c;
+    }
+}
+
+_____________________________________________________________________________________________________________
+*** Implementation of Single Inheritence: 
+
+
+class Main {
+    public static void main(String[] args) {
+        B b=new B();
+        b.meth1();
+        b.meth2();
+    }
+}
+class A
+{
+    static void meth1()
+    {
+        System.out.println("Meth1 in A");
+    }
+}
+class B extends A
+{
+     static void meth2()
+    {
+        System.out.println("Meth2 in B");
+    }
+}
+
+_______________________________________________________________________________________________________________________
+
+*** Implementation of Multilevel Inheritence:
+
+
+class Main {
+    public static void main(String[] args) {
+        C obj=new C();
+        obj.meth1();
+        obj.meth2();
+        obj.meth3();
+    }
+}
+class A
+{
+    static void meth1()
+    {
+        System.out.println("Meth1 in A");
+    }
+}
+class B extends A
+{
+     static void meth2()
+    {
+        System.out.println("Meth2 in B");
+    }
+}
+class C extends B
+{
+     static void meth3()
+    {
+        System.out.println("Meth3 in C");
+    }
+}
+
+__________________________________________________________________________________________________________________________________
+
+*** Heriarcy Inheritance: 
+
+class Main {
+    public static void main(String[] args) {
+        C obj=new C();
+        obj.meth1();
+        obj.meth2();
+
+        B obj2=new B();
+        obj2.meth1();
+        obj2.meth2();
+        
+    }
+}
+class A
+{
+    static void meth1()
+    {
+        System.out.println("Meth1 in A");
+    }
+}
+class B extends A
+{
+     static void meth2()
+    {
+        System.out.println("Meth2 in B");
+    }
+}
+class C extends A
+{
+     static void meth3()
+    {
+        System.out.println("Meth3 in C");
+    }
+}
+
+______________________________________________________________________________________________________________________________________________
+*** Polymorphism ***
+=> Single task can be done in different ways.
+=> Polymorphism can be achieve in 2 ways:
+* Overloading.(compile time Polymorphism)
+* Overriding.(Run time Ploymorphism)
+
+*** Overloading:  
+=> A class Contain multiple methods with same name, but different parameters are called Method Overloading.
+Code: 
+
+class Main {
+    public static void main(String[] args) {
+        A obj=new A();
+        System.out.println(obj.meth1(10,20));
+         System.out.println(obj.meth1(10,20,30));
+        
+    }
+}
+class A
+{
+    int meth1(int a,int b)
+    {
+        return a+b;
+    }
+     int meth1(int a,int b,int c)
+    {
+        return a+b+c;
+    }    
+}
+
+
+*** Overriding :
+=> when a class inherit the super class method , which have same parameters is know as Method Overriding.
+code: 
+
+
+class Main {
+    public static void main(String[] args) {
+       
+        B obj2=new B();
+        System.out.println(obj2.meth1(10,20));
+        
+    }
+}
+class A
+{
+    int meth1(int a,int b)
+    {
+        return a+b;
+    }    
+}
+class B extends A
+{
+      int meth1(int a,int b)
+    {
+        return a+b;
+    }   
+}
+
+______________________________________________________________________________________________________________________
+class Main{
+    public static void main(String[] args){
+        
+        Student s1 = new Student();
+         s1.setName("Rohith");
+        System.out.println("Name : "+s1.getName());
+        s1.setAge(30);
+        System.out.println("Age : "+s1.getAge());
+         s1.setPassedOut(false);
+        System.out.println("Passed Or Not : "+s1.getPassedout());
+         s1.setMarks(295);
+        System.out.println("Marks : "+s1.getMarks());
+         s1.setERP(5000);
+        System.out.println("ERP : "+s1.getERP());
+    }
+}
+
+class Student{
+    int age;String name;boolean passedout;float marks;long ERP;
+    
+    void setAge(int age){
+        this.age = age;
+    }
+    void setName(String name){
+        this.name=name;
+    }
+    void setPassedOut(boolean passedout){
+        this.passedout = passedout;
+    }
+    void setMarks(float marks){
+        this.marks = marks;
+    }
+    void setERP(long ERP){
+        this.ERP = ERP;
+    }
+    
+    int getAge(){
+        return age;
+    }
+    String getName(){
+        return name;
+    }
+    boolean getPassedout(){
+        return passedout;
+    }
+    float getMarks(){
+        return marks;
+    }
+    long getERP(){
+        return ERP;
+    }
+}
+
+____________________________________________________________________________________________________________________________________
+*** Abstraction: 
+=> Abstraction is the process of hinding the internal details and showing required details.
+=> Absrtaction is acheiving by using abstract keyword.
+
+Code:
+class Main
+{
+    public static void main(String args[])
+    {
+        B obj=new B();
+        System.out.println(obj.meth(10,20));
+    }
+}
+abstract class A
+{
+    abstract int meth(int a,int b);
+}
+class B extends A
+{
+    int meth(int a,int b)
+    {
+        return a+b;
+    }
+}
+
+______________________________________________________________________________________________________________________________________
+*** Interface: 
+=> interface is blueprint of class.
+=> Interface contain only abstract menthods.
+=> Interface is created using interface keyword in place of class.
+=> It will inherits using implements keyword.
+
+Code:
+
+class Main
+{
+    public static void main(String args[])
+    {
+        B obj=new B();
+        System.out.println(obj.meth(10,20));
+    }
+}
+interface  A
+{
+     int meth(int a,int b);
+    
+}
+class B implements A
+{
+    public int meth(int a,int b)
+    {
+        return a+b;
+    }
+}
+
+_______________________________________________________________________________________________________________________________________________
