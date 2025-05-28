@@ -1,0 +1,214 @@
+*** Linked List Implementation ***
+class Main{
+    public static void main(String args[])
+    {
+        LL l=new LL();
+       
+        l.insertFirst(10);
+        l.insert(20);
+        l.insert(30);
+        l.insert(40);
+        l.insertAtValue(20,50);
+        
+        // l.removeFirst();
+        // l.removeEnd();
+        // l.removeAtSpecific(20);
+        
+        l.display();
+    }
+}
+class LL
+{
+    Node head;
+    Node tail;
+    class Node
+    {
+        int val;
+        Node next;
+        
+        Node(int val)
+        {
+            this.val=val;
+        }
+    }
+    
+    public void insertFirst(int val)
+    {
+        Node node=new Node(val);
+        if(head==null)
+        {
+            head=tail=node;
+        }
+    }
+    public void insert(int val)
+    {
+        Node node=new Node(val);
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            temp=temp.next;
+        }
+        temp.next=node;
+        node.next=null;
+        tail=node;
+    }
+    public void insertAtValue(int pos,int val)
+    {
+        Node node=new Node(val);
+        Node temp=head;
+        Node prev=null;
+        
+        while(temp!=null)
+        {
+            if(temp.val==pos)
+            {
+                node.next=temp;
+                prev.next=node;
+            }
+            prev=temp;
+            temp=temp.next;
+        }
+    }
+    
+    public Node removeFirst()
+    {
+        Node temp=head;
+        if(temp!=null)
+        {
+            head=temp.next;
+        }
+        return head;
+    }
+    public Node removeEnd()
+    {
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            if(temp.next.next==null)
+            {
+                temp.next=null;
+                tail=temp;
+            }
+            else
+            {
+                temp=temp.next;
+            }
+        }
+        return head;
+    }
+    public Node removeAtSpecific(int val)
+    {
+        
+        Node prev=null;
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            if(temp.next.val==val)
+            {
+                temp.next=temp.next.next;
+            }
+            else
+            {
+                temp=temp.next;
+            }
+        }
+        return head;
+    }
+    
+    
+    public void display()
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(temp.val+" -> ");
+            temp=temp.next;
+        }
+        System.out.print("end");
+    }
+}
+___________________________________________________________________________________________________________________________________
+*** Find the Middle element:
+input: 20 -> 30 -> 40 -> 50 -> 60 -> end
+output: 40
+
+code: 
+class Main{
+    public static void main(String args[])
+    {
+        LL l=new LL();
+       
+        
+        l.insert(20);
+        l.insert(30);
+        l.insert(40);
+        l.insert(50);
+        l.insert(60);
+        
+        
+        
+        l.display();
+        System.out.println();
+        System.out.println(l.middle());
+    }
+}
+class LL
+{
+    Node head;
+    Node tail;
+    class Node
+    {
+        int val;
+        Node next;
+        
+        Node(int val)
+        {
+            this.val=val;
+        }
+    }
+    
+  
+    public void insert(int val)
+    {
+        
+        Node node=new Node(val);
+        if(head==null)
+        {
+            head=tail=node;
+        }
+        Node temp=head;
+        while(temp.next!=null)
+        {
+            temp=temp.next;
+        }
+        temp.next=node;
+        node.next=null;
+        tail=node;
+    }
+    
+    public int middle()
+    {
+        Node temp=head;
+        Node slow=head;
+        Node fast=head;
+        
+        while(fast.next!=null && fast.next.next!=null)
+        {
+            fast=fast.next.next;
+            slow=slow.next;
+        }
+        return slow.val;
+    }
+   
+    
+    public void display()
+    {
+        Node temp=head;
+        while(temp!=null)
+        {
+            System.out.print(temp.val+" -> ");
+            temp=temp.next;
+        }
+        System.out.print("end");
+    }
+}
