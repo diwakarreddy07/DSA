@@ -1,0 +1,149 @@
+*** Linked List Problems ***
+Q: find the list is cycle or not.
+
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public boolean hasCycle(ListNode head) {
+        ListNode fast=head;
+        ListNode slow=head;
+
+        while(fast!=null && fast.next!=null)
+        {
+            fast=fast.next.next;
+            slow=slow.next;
+            if(fast==slow)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+_________________________________________________________________________________________________________
+Q: find the start element of the listcycle.
+
+/**
+ * Definition for singly-linked list.
+ * class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode(int x) {
+ *         val = x;
+ *         next = null;
+ *     }
+ * }
+ */
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+         int length=0;
+        ListNode fast=head;
+        ListNode slow=head;
+
+        while(fast!=null && fast.next!=null)
+        {
+           
+            fast=fast.next.next;
+            slow=slow.next;
+
+            if(fast==slow)
+            {
+                length=cycleLength(slow);
+                break;
+            }
+        }
+        if(length==0)
+        {
+            return null;
+        }
+
+        ListNode first=head;
+        ListNode second=head;
+// Finding Second Node.
+        while(length>0)
+        {
+            second=second.next;
+            length--;
+        }
+// Move first and second to get start index of Cycle.
+        while(first!=second)
+        {
+            first=first.next;
+            second=second.next;
+        }
+        return second;
+    }
+    public int cycleLength(ListNode head)
+    {
+        ListNode fast=head;
+        ListNode slow=head;
+
+        while(fast!=null && fast.next!=null)
+        {
+            fast=fast.next.next;
+            slow=slow.next;
+            if(fast==slow)
+            {
+                ListNode temp=slow;
+                int length=0;
+                do{
+                    temp=temp.next;
+                    length++;
+                }while(temp!=slow);
+               return length;
+            }
+            
+        }
+        return 0;
+    }
+}
+
+______________________________________________________________________________________________________________
+Q: Remove Nth node from the end in the list.
+
+/**
+ * Definition for singly-linked list.
+ * public class ListNode {
+ *     int val;
+ *     ListNode next;
+ *     ListNode() {}
+ *     ListNode(int val) { this.val = val; }
+ *     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+ * }
+ */
+class Solution {
+    public ListNode removeNthFromEnd(ListNode head, int n) {
+        ListNode dummy=new ListNode(0);
+        dummy.next=head;
+        ListNode first=dummy;
+        ListNode second=dummy;
+
+        for(int i=0;i<=n;i++)
+        {
+            first=first.next;
+        }
+
+        while(first!=null)
+        {
+            first=first.next;
+            second=second.next;
+        }
+
+        ListNode del=second.next;
+        second.next=del.next;
+        del.next=null;
+
+        return dummy.next;
+    }
+}
