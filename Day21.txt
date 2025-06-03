@@ -1,0 +1,104 @@
+*** Monotonic Stack ***
+=> A monotonic stack is a special data structure used in algorithmic problem-solving. Monotonic Stack maintaining elements in either increasing or decreasing order.
+   It is commonly used to efficiently solve problems such as finding the next greater or smaller element in an array etc.
+
+*** Next Greater Element: 
+code:
+input =[5,7,4,6,3,0]
+output=[7,-1,6,-1,-1,-1]
+
+import java.util.*;
+class Main
+{
+    public static void main(String args[])
+    {
+        int arr[]={5,7,4,6,3,0};
+        List<Integer> list=find(arr);
+        System.out.print(list);
+    }
+    static List<Integer> find(int[] arr)
+    {
+        Stack<Integer> stack=new Stack<>();
+        List<Integer> list=new ArrayList<>();
+        
+        int n=arr.length;
+        int arr1[]=new int[n];
+        
+        for(int i=n-1;i>=0;i--)
+        {
+            while(!stack.isEmpty() && stack.peek()<=arr[i])
+            {
+                stack.pop();
+            }
+            arr1[i]=stack.isEmpty()?-1:stack.peek();
+            
+            stack.push(arr[i]);
+        }
+        
+        for(int val:arr1)
+        {
+            list.add(val);
+        }
+        return list;
+    }
+}
+
+
+**** Maps: 
+In Java, Maps are part of the Java Collections Framework and are used to store key-value pairs. The Map interface maps keys to values, where each key is unique and can map to at most one value.
+
+1. Key Concepts
+=> A Map cannot contain duplicate keys.
+=> Each key can map to one value.
+=> You can retrieve a value using its key.
+==> Common implementations:
+   HashMap,
+   TreeMap,
+   LinkedHashMap,
+   and Hashtable.
+
+Q: Character Frequency Count
+Code: 
+import java.util.HashMap;
+import java.util.Map;
+
+public class CharFrequency {
+    public static void main(String[] args) {
+        String input = "hello world";
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+
+        for (char c : input.toCharArray()) {
+            if (c == ' ') continue; // skip spaces
+            frequencyMap.put(c, frequencyMap.getOrDefault(c, 0) + 1);
+        }
+
+        System.out.println("Character frequencies:");
+        for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+        }
+    }
+}
+
+
+_______________________________________________________________________________________________________________________
+2. Word Frequency Count
+import java.util.HashMap;
+import java.util.Map;
+
+public class WordFrequency {
+    public static void main(String[] args) {
+        String input = "this is a test this is only a test";
+        String[] words = input.split(" ");
+        Map<String, Integer> frequencyMap = new HashMap<>();
+
+        for (String word : words) {
+            frequencyMap.put(word, frequencyMap.getOrDefault(word, 0) + 1);
+        }
+
+        System.out.println("Word frequencies:");
+        for (Map.Entry<String, Integer> entry : frequencyMap.entrySet()) {
+            System.out.println(entry.getKey() + " => " + entry.getValue());
+        }
+    }
+}
+

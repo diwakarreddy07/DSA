@@ -1,0 +1,61 @@
+*** Stack ***
+
+=>Stack is a linear Data Structure.
+=>It follows LIFO(Last in First Out).
+=> Stacks are used to get the output in constant time.[O(1)]
+
+==> Stack Operations: 
+* push =>. to add Element into the Stack.
+* pop => To Remove the element from the stack.
+* peek => Give the top element in the stack.
+* isEmpty => Check the stack is empty or not return boolean values.
+* display => Print the stack elements.
+* contains => Check if the element is present in the stack or not.
+
+*** Implementation of stack: 
+
+import java.util.*;
+class Main {
+    public static void main(String[] args) {
+        Stack<Integer> stack=new Stack<>();
+
+        // Adding elements into the Stack.
+        stack.push(10);
+        stack.push(20);
+        stack.push(30);
+        stack.push(40);
+        stack.push(50);
+
+         // Removing an element from the Stack.
+        stack.pop();
+        
+        //Printing whole stack elements
+        System.out.println(stack);
+        
+        //Peek Element
+        System.out.println(stack.peek());
+        
+        // for contains()
+        if(stack.contains(30))
+        {
+            System.out.println("Element is there");
+        }
+        else
+        {
+            System.out.println("Element is not there");
+        }
+        
+        // For isEMpty()
+        
+         if(stack.isEmpty())
+        {
+            System.out.println("stack is Empty ");
+        }
+        else
+        {
+            System.out.println("Stack is not Empty");
+        }
+    }
+}
+
+
