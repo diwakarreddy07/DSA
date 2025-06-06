@@ -1,4 +1,5 @@
-binarsy search------------------------------------
+binarsy search ttree------------------------------------(1)
+
 import java.util.Scanner;
 
 class BinarySearchTree {
@@ -105,8 +106,9 @@ class BinarySearchTree {
 }
 
 
-//////////////////////////////////////////////////
-bst----------------------------------------------------------
+binary tree-----------------------------------------------------(2)
+
+
 import java.util.Scanner;
 
 class BinaryTree {
@@ -211,8 +213,13 @@ class BinaryTree {
         BinaryTree tree = new BinaryTree();
         tree.populate(in);
         tree.display();
-/////////////////////////////////////////////////////////
-recurrs------------------------------------------------
+
+
+
+recurrs--------------------------------------------------(3)
+
+
+
 public static void bfs(Node root){
         if(root == null) return;
         
