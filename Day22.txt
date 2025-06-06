@@ -1,0 +1,209 @@
+*** Trees:
+-> A tree is a hierarchical data structure used to represent relationships between elements. Trees are widely used for tasks like searching, sorting, hierarchical representation, and more.
+-> A tree is a non-linear data structure made up of nodes.
+-> We use trees to get Output in log n time complexity.
+where:
+      - The top node is called the root.
+      - Each node contains some data and links to child nodes.
+      - There are no cycles (it's a connected acyclic graph).
+      - Every node (except the root) has exactly one parent.
+
+Node	 -An element of the tree containing data
+Root	 -The topmost node in the tree
+Child	 -A node that descends from another node
+Parent -A node that has one or more child nodes
+Leaf	 -A node with no children
+Edge	 -The link between a parent and a child
+Height -Max number of edges from root to a leaf
+Depth	 -Number of edges from the root to that node
+Subtree-A tree formed by any node and its descendants
+
+-> Highest of tree : Longest path of tree.
+-> Depth of tree : max(Left+Right+1)
+
+=> Types of Trees
+1. General Tree
+-Each node can have any number of children.
+-Used in file systems, organizational structures, etc.
+
+2. Binary Tree
+-Each node has at most two children (left and right).
+-Base for many tree types like BST, AVL, etc.
+-Perfect Binary tree means every level should be filled with nodes having either two.(To maintain balance)
+-Full Binary tree means every level should be filled with nodes having either two or zreo.(To maintain balance)
+-Complete Binary tree means every level should be filled with nodes and start with left to right.
+
+3. Binary Search Tree (BST)
+-A binary tree with ordering:
+-Left subtree < Root < Right subtree.
+-Used in fast search, insert, and delete operations.
+
+4. AVL Tree (Self-balancing BST)
+-A balanced BST.
+-Balance factor (height difference of left and right subtree) is kept between -1, 0, and 1.
+
+5. Red-Black Tree
+-A self-balancing BST using color properties (red and black).
+-Ensures O(log n) time for operations.
+
+6. Heap Tree
+-A complete binary tree:
+-Max Heap: Parent ≥ children
+-Min Heap: Parent ≤ children
+-Used in priority queues, sorting (heap sort).
+
+7. Segment Tree
+-Used for range queries (sum, min, max) on an array.
+-Tree is built from the array for O(log n) query and update.
+
+8. Trie (Prefix Tree)
+-Used for storing strings efficiently.
+-Every node represents a character; paths form words.
+-Used in dictionaries, autocomplete, IP routing.
+
+9. N-ary Tree
+-Each node can have at most N children.
+-Useful in game trees, decision trees, etc.
+
+10. B Tree / B+ Tree
+-Generalized BST used in database indexing.
+-Balanced tree designed for disk-based systems.
+
+
+=> Tree Traversals :
+- Traversals are ways to visit all nodes in the tree in a specific order.
+- How to visit all nodes:
+    -In-order (Left, Root, Right) – BST gives sorted order.
+    -Visits nodes in ascending sorted order. This is a very useful property of BSTs.
+            Example (original tree): 5, 10, 15, 20, 25, 30, 35
+    -Pre-order (Root, Left, Right) – Used for expression trees.
+    -Useful for creating a copy of the tree.
+            Example (original tree): 20, 10, 5, 15, 30, 25, 35
+    -Post-order Traversal (Left, Right, Root): Useful for deleting the tree.
+            Example (original tree): 5, 15, 10, 25, 35, 30, 20
+    -Level-order Traversal (Breadth-First): Visits nodes level by level, from left to right.
+            Example (original tree): 20, 10, 30, 5, 15, 25, 35
+
+=>Time Complexity : The efficiency of BST operations depends heavily on the height (h) of the tree.
+      -> Search, Insertion, Deletion:
+            -Average Case: O(logn), where n is the number of nodes. This occurs when the tree is relatively balanced.
+             Worst Case: O(n). This occurs when the tree is skewed (e.g., all nodes form a single chain, like a linked list), making the height n.
+
+=>Space Complexity : O(n) for storing n nodes.
+
+
+=> Balancing and Unbalancing trees:
+
+-> Balanced Tree :
+  -  A balanced tree is a tree where the height difference (or depth difference) between left and right subtrees of every node is within a specific limit (usually -1, 0, or 1).
+  -  Ensures operations (search, insert, delete) stay efficient — typically O(log n) time.
+     Examples: AVL Tree, Red-Black Tree
+  -  Formula (AVL Balance Factor):
+  -  Balance Factor :
+      - Height of Left Subtree
+      - Height of Right Subtree
+  -  Balance Factor=Height of Left Subtree−Height of Right Subtree
+  -  For AVL Tree: Balance Factor ∈ { -1, 0, +1 }
+
+-> Unbalanced Tree :
+  -  An unbalanced tree is a tree where the height difference between subtrees of some nodes exceeds the allowed balance factor (usually more than 1 or less than -1).
+  -  Can degrade performance to O(n) in the worst case (like a linked list).
+     Example: Inserting sorted data into a simple Binary Search Tree (BST) without self-balancing.
+
+-> Tree Height : Height of a node = Number of edges in the longest path from the node to a leaf.
+
+-------------------------------------------------------------------------------------------------------------
+=>Searching Algorithms :
+
+1. Linear Search (Sequential Search)
+Definition : It checks each element in the list one by one until it finds the target or reaches the end.
+
+- How it works: 
+      -Start from the first element.
+      -Compare each element with the target.
+      -If found, return the index.
+      -If not, continue until the end.
+
+Time Complexity: O(n)
+Use case: Small or unsorted data.
+
+Code:
+      int linearSearch(int[] arr, int key) {
+          for(int i = 0; i < arr.length; i++) {
+              if(arr[i] == key)
+                  return i;
+          }
+          return -1;
+      }
+----------------------------------------------------------------------------------------------------------------
+2. Binary Search
+Definition : Efficient search on a sorted array by repeatedly dividing the search interval in half.
+
+- How it works:
+      -Find the middle element.
+      -If it matches the target, return it.
+      -If the target is less, search the left half.
+      -If the target is more, search the right half.
+
+Time Complexity: O(log n)
+Use case: Sorted data.
+
+Code:
+
+int binarySearch(int[] arr, int key) {
+    int low = 0, high = arr.length - 1;
+    while(low <= high) {
+        int mid = (low + high) / 2;
+        if(arr[mid] == key)
+            return mid;
+        else if(arr[mid] < key)
+            low = mid + 1;
+        else
+            high = mid - 1;
+    }
+    return -1;
+}
+-----------------------------------------------------------------------------------------------------------------------
+3. Jump Search
+Definition : Used for sorted arrays. It jumps ahead by fixed steps to find the block where the target might exist and then performs linear search.
+
+Time Complexity: O(√n)
+Use case: Faster than linear, but array must be sorted.
+------------------------------------------------------------------------------------------------------------------------
+4. Interpolation Search
+Definition : Improved version of binary search that works well with uniformly distributed data.
+
+- How it works:
+      -It estimates where the target might be, based on the value range.      
+      -Time Complexity: O(log log n) (Best), O(n) (Worst)
+-----------------------------------------------------------------------------------------------------------------------
+5. Exponential Search
+Definition : Used for unbounded or infinite lists (or when size is not known in advance).
+
+- How it works:
+      -Find the range by exponentials (2⁰, 2¹, 2²,...).
+      -Then apply binary search in that range.
+
+Time Complexity: O(log n)
+-------------------------------------------------------------------------------------------------------------------------
+6. Ternary Search
+Definition : Like binary search but divides the array into three parts instead of two.
+
+- How it works:
+      -Calculates two mid points.
+      -Checks which segment the key lies in.
+
+- Repeats the process.
+
+Time Complexity: O(log₃ n)
+-------------------------------------------------------------------------------------------------------------------------
+***Table :-
+
+Algorithm	            |Data Requirement	      |Time Complexity	      |Use Case
+_______________________|||________________________________
+Linear Search	      |Unsorted/Sorted	      |O(n)	                  |Simple, small data
+Binary Search	      |Sorted	            |O(log n)	            |Efficient for sorted data
+Jump Search	            |Sorted	            |O(√n)	            |Better than linear on large lists
+Interpolation Search	|Sorted & uniform	      |O(log log n)      	|Uniformly distributed data
+Exponential Search	|Sorted	            |O(log n)	            |Infinite or unknown size lists
+Ternary Search	      |Sorted	            |O(log₃ n)	            |When binary search isn’t optimal
