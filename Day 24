@@ -1,0 +1,180 @@
+***AVL Tree:
+
+Case 1:
+When ever it is the left left case to the right rotate.
+Case 2:
+When ever it is right right case to the left rotate.
+Case 3:
+When ever it is the left right case do the left rotate and then the right rotate.
+Case 4:
+When ever it is the right left case do the right rotate and then left rotate.
+Definition:
+-> An AVL Tree (named after its inventors, Adelson-Velsky and Landis) is a self-balancing binary search tree.
+  The "self-balancing" aspect is crucial: it means that the tree automatically adjusts itself to maintain a certain height balance, 
+  which prevents it from degenerating into a linked list (a common problem with regular binary search trees that can lead to O(n) search times in the worst case).
+
+
+-> The key property of an AVL tree is that for every node, the height difference between its left and right subtrees (known as the balance factor) must be at most 1. 
+   This balance factor can be -1, 0, or 1. If at any point an insertion or deletion causes this balance factor to become 2 or -2, the tree becomes unbalanced, and rotations are performed to restore the balance.
+
+-> Explanation of the Cases and Rotations:
+     - The "cases" you provided refer to the four scenarios of imbalance that can occur in an AVL tree after an insertion or deletion, 
+       and the "rotations" are the specific operations used to rebalance the tree.
+
+-> Let's visualize and explain each case:
+
+- Rotations:
+  -Left Rotation: This operation is performed when a node's right child is "too heavy" (i.e., the right subtree is taller than the left subtree by more than 1, and the imbalance is on the right side of the right child). It essentially rotates the tree to the left, making the right child the new parent and balancing the heights.
+
+    P                      R
+   / \                    / \
+  L   R         ->       P   RR
+     / \                / \
+    RL  RR             L   RL
+
+  -Right Rotation: This operation is performed when a node's left child is "too heavy" (i.e., the left subtree is taller than the right subtree by more than 1, and the imbalance is on the left side of the left child). It rotates the tree to the right, making the left child the new parent.
+
+    P                      L
+   / \                    / \
+  L   R         ->       LL  P
+ / \                        / \
+LL  LR                     LR  R
+
+-> Imbalance Cases:
+-Let's assume P is the first unbalanced node (where the balance factor is 2 or -2).
+
+- Case 1: Left-Left (LL) Case
+
+-> Description: An imbalance occurs because a new node is inserted into the left subtree of the left child of the unbalanced node P. 
+   The path causing the imbalance is from P to its left child (L) and then to L's left child (LL).
+
+-> Balance Factor: P has a balance factor of 2 (or -2 if we consider left heavy as positive 2, convention varies, but it means left subtree is taller), 
+   and L also has a balance factor indicating left heavy.
+
+-> Action: Right Rotate at node P.
+
+- Example:
+
+      P (unbalanced)
+     / \
+    L   T3
+   / \
+  LL  T2
+ / \
+T1  T4 (newly inserted)
+
+- After Right Rotate at P:
+
+      L
+     / \
+    LL  P
+   / \ / \
+  T1 T4 T2 T3
+
+- Case 2: Right-Right (RR) Case
+
+-> Description: An imbalance occurs because a new node is inserted into the right subtree of the right child of the unbalanced node P. 
+   The path causing the imbalance is from P to its right child (R) and then to R's right child (RR).
+
+-> Balance Factor: P has a balance factor of -2 (or 2 depending on convention, meaning right subtree is taller), and R also has a balance factor indicating right heavy.
+
+- Action: Left Rotate at node P.
+
+- Example:
+
+      P (unbalanced)
+     / \
+    T1  R
+       / \
+      T2  RR
+         / \
+        T3  T4 (newly inserted)
+
+- After Left Rotate at P:
+
+      R
+     / \
+    P   RR
+   / \ / \
+  T1 T2 T3 T4
+
+- Case 3: Left-Right (LR) Case
+
+-> Description: An imbalance occurs because a new node is inserted into the right subtree of the left child of the unbalanced node P. The path causing the imbalance is from P to its left child (L) and then to L's right child (LR).
+
+-> Balance Factor: P is left heavy (balance factor 2), but L is right heavy (balance factor -1).
+
+  - Action: First, Left Rotate at node L. Then, Right Rotate at node P. (This is a double rotation).
+
+  - Example:
+
+      P (unbalanced)
+     / \
+    L   T4
+   / \
+  T1  LR (newly inserted)
+     / \
+    T2  T3
+
+- After Left Rotate at L:
+
+      P
+     / \
+    LR  T4
+   / \
+  L   T3
+ / \
+T1  T2
+
+- Now it's an LL case for P. After Right Rotate at P:
+
+      LR
+     /  \
+    L    P
+   / \  / \
+  T1 T2 T3 T4
+
+- Case 4: Right-Left (RL) Case
+
+-> Description: An imbalance occurs because a new node is inserted into the left subtree of the right child of the unbalanced node P. The path causing the imbalance is from P to its right child (R) and then to R's left child (RL).
+
+-> Balance Factor: P is right heavy (balance factor -2), but R is left heavy (balance factor 1).
+  - Action: First, Right Rotate at node R. Then, Left Rotate at node P. (This is a double rotation).
+
+- Example:
+
+      P (unbalanced)
+     / \
+    T1  R
+       / \
+      RL  T4
+     / \
+    T2  T3 (newly inserted)
+
+- After Right Rotate at R:
+
+      P
+     / \
+    T1  RL
+       / \
+      T2  R
+         / \
+        T3 T4
+
+- Now it's an RR case for P. After Left Rotate at P:
+
+      RL
+     /  \
+    P    R
+   / \  / \
+  T1 T2 T3 T4
+
+- Summary of the Topic:
+- The cases and rotations you've presented are the core mechanisms for maintaining balance in AVL Trees. \
+  They ensure that insertion and deletion operations in a binary search tree can be performed in O(logn) time, where n is the number of nodes, 
+  by preventing the tree from becoming skewed and inefficient. 
+- This makes AVL trees highly efficient for applications requiring frequent search, insertion, and deletion operations on sorted data.
+
+Leetcode:-
+Problems to solve for recaping the topics :
+103, 199, 700, 701, 450, 98, 653, 230, 235.
